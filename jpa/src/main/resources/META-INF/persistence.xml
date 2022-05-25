@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+    <!-- name="持久化单元命名"  transaction-type="本地事务(RESOURCE_LOCAL)/JTA(分布式事物 )" -->
+    <persistence-unit name="hibernateJPA" transaction-type="RESOURCE_LOCAL">
+        <!-- 供应商 -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--        ORM POJO 类-->
+        <class>sizhe.chen.pojo.Customer</class>
+
+        <properties>
+            <!-- 参数：数据库驱动名、地址、用户、密码、方言、显示执行SQL语句 -->
+            <property name="javax.persistence.jdbc.user" value="jpa"/>
+            <property name="javax.persistence.jdbc.password" value="jpa"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/jpa"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- 其他设置 -->
+            <property name="minPoolSize" value="5"/>
+            <property name="initialPoolSize" value="10"/>
+            <property name="idleConnectionTestPeriod" value="120"/>
+            <property name="acquireIncrement" value="10"/>
+            <property name="checkoutTimeout" value="3600"/>
+            <property name="numHelperThreads" value="4"/>
+            <property name="maxStatements" value="400"/>
+            <property name="maxStatementsPerConnection" value="20"/>
+            <property name="maxIdleTime" value="180"/>
+            <property name="acquireRetryAttempts" value="30"/>
+            <property name="maxPoolSize" value="200"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>
