@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <!-- 配置数据库连接 connection -->
+    <session-factory>
+        <!-- 数据库驱动 -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- 数据库地址 localhost可以写作 jdbc:mysql:/// -->
+        <property name="connection.url">jdbc:mysql://localhost:3306/jpa</property>
+        <!-- 数据库用户名 -->
+        <property name="connection.username">jpa</property>
+        <!-- 数据库用户的密码 -->
+        <property name="connection.password">jpa</property>
+
+        <!-- 数据库方言 MySQL -->
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- 连接池 C3P0 -->
+<!--        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>-->
+
+        <!-- 格式化输出生成的SQL语句 -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <!-- hibernate根据映射关系自动建表
+            默认: 不会创建表
+            create: 没有表就创建，有表就删除重建。
+            create-drop: 没有表就创建，有表就删除重建，使用完自动删表。
+            update: 没有表就创建表，否则使用现有的表。
+            validate: 不会创建表
+         -->
+        <property name="hbm2ddl.auto">update</property>
+        <!-- 加载映射文件 -->
+        <mapping class="sizhe.chen.pojo.Customer"></mapping>
+    </session-factory>
+</hibernate-configuration>
