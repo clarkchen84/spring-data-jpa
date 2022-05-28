@@ -10,6 +10,9 @@
     <modules>
         <module>jpa-hibernate</module>
         <module>jpa</module>
+        <module>spring-data-jap-xml</module>
+        <module>spring-data-jpa-annotation</module>
+        <module>dynamic-query</module>
     </modules>
 
     <properties>

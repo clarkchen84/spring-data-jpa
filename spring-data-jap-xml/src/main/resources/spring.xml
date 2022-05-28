@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     https://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/data/jpa
+     https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    <jpa:repositories base-package="sizhe.chen.repositories" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
+    <context:property-placeholder location="datasource.properties"/>
+    <bean name="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="packagesToScan" value="sizhe.chen.model"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="generateDdl" value="true"/>
+                <property name="showSql" value="true"/>
+            </bean>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${druid.username}" />
+        <property name="password" value="${druid.password}" />
+        <property name="url" value="${druid.connection-url}" />
+        <property name="driverClassName" value="${druid.driver-class}" />
+    </bean>
+    <bean name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+    <context:component-scan base-package="sizhe.chen.service"/>
+</beans>
