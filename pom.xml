@@ -13,6 +13,7 @@
         <module>spring-data-jap-xml</module>
         <module>spring-data-jpa-annotation</module>
         <module>dynamic-query</module>
+        <module>query-dsl</module>
     </modules>
 
     <properties>
